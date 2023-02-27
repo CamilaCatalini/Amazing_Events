@@ -1,0 +1,80 @@
+@font-face{
+    font-family: 'Phudu';
+    src: url('./../fonts/Phudu/Phudu-VariableFont_wght.ttf');
+}
+
+@font-face{
+    font-family: 'Bebas';
+    src: url('./../fonts/Bebas_Neue/BebasNeue-Regular.ttf');
+}
+
+*{
+    font-family: Phudu;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.price{
+    font-family: Bebas;
+}
+
+.row{
+    --bs-gutter-x: 0;
+}
+
+p{
+    margin: 0;
+}
+
+h1{
+    text-shadow: 0 0 3px #ece5e5, 0 0 5px #f9f9fc;
+}
+
+button:hover, a:hover{
+    background-color: #e0046c !important;
+}
+
+#img-logo{
+    height: 50px;
+    width: 120px;
+}
+
+#carouselExampleFade{
+    background-color: #e0046c;
+}
+
+#logo-link:hover, .carousel-control-prev:hover, .carousel-control-next:hover, #icon-redes a:hover{
+    background-color: transparent !important;
+}
+
+.carousel-control-prev img{
+    height: 30px;
+    width: 30px;
+} 
+
+.carousel-control-next img{
+    height: 30px;
+    width: 30px;
+}
+
+.cards-events{
+    width: 18rem;
+}
+
+
+
+.card-img-top{
+    height: 10rem;
+}
+
+#icon-redes img{
+    width: 50px;
+    height: 50px;
+}
+
+
+footer p{
+    color: white;
+    font-size: 1.5rem;
+}
