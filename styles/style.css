@@ -78,3 +78,10 @@ footer p{
     color: white;
     font-size: 1.5rem;
 }
+
+/** DETAIL **/
+
+#card-event img{
+    height: 100%;
+    width: 100%;
+}
