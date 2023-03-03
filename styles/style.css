@@ -62,6 +62,11 @@ button:hover, a:hover{
     width: 18rem;
 }
 
+.card-info{
+    text-align: justify;
+    height: 10rem;
+}
+
 
 
 .card-img-top{
