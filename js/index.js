@@ -1,3 +1,31 @@
+let category = document.getElementById("categories");
+let div2 = document.createElement("div");
+div2.className = "px-lg-5 px-md-2 px-3 row d-flex align-items-center";
+
+let template2 = '';
+let categories = [];
+
+for( const c of data.events){
+    categories.push(c['category']);
+}
+
+//quitar categorias repetidas
+let unique_categories = [... new Set(categories)];
+
+for( const c of unique_categories){
+    template2 += `
+        <div class="col-lg-3 col-md-3 col-6 form-check">
+            ${c}
+            <input class="form-check-input border border-dark" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault"></label>
+        </div>
+    `
+}
+
+div2.innerHTML = template2;
+category.appendChild(div2);
+
+
 let cards = document.getElementById("cards-event");
 let div = document.createElement("div");
 div.className = "row d-flex justify-content-center";
@@ -24,3 +52,4 @@ for( const d of data.events){
 
 div.innerHTML = template;
 cards.appendChild(div);
+
