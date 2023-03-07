@@ -2,6 +2,10 @@ function searchEvents(element){
     search(element.value, past_events);
 }
 
+function selectCategory(element){
+    changeCardsForCategory(element, past_events);
+}
+
 function getPastEvents(){
 
     let array_past_events = [];
