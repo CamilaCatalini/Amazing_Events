@@ -1,4 +1,4 @@
-function createCards(){
+function getPastEvents(){
     let cards = document.getElementById("cards-event");
     let div = document.createElement("div");
     div.className = "row d-flex justify-content-center";
@@ -6,7 +6,8 @@ function createCards(){
     let template = '';
 
     for( const d of data.events){
-        template += `
+        if(data.currentDate > d['date']){
+            template += `
             <div class="col-lg-4 m-2 card border border-dark cards-events ">
                 <img src=${d['image']} class="card-img-top p-1" alt="...">
                 <div class="card-body row align-items-end">
@@ -20,12 +21,12 @@ function createCards(){
                     </div>
                 </div>
             </div>
-        `
+            `
+        }     
     }
-
     div.innerHTML = template;
     cards.appendChild(div);
 }
 
-createCards();
-createCategories(data.events);
+getPastEvents();
+createCategories(data.events)
