@@ -58,7 +58,7 @@ function createCards(data){
     for( const d of data){
         template += `
             <div class="col-lg-4 m-2 card border border-dark cards-events ">
-                <img src=${d['image']} class="card-img-top p-1" alt="...">
+                <img src=${d['image']} class="card-img-top p-1 " alt="...">
                 <div class="card-body row align-items-end">
                     <div class="card-info">
                         <h5 class="card-title text-center">${d['name']}</h5>
