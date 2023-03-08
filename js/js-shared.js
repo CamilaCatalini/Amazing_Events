@@ -88,6 +88,8 @@ function deleteChildElements(id){
 function search(word, events){
     
     let array_events = [];
+
+    
     
     events.forEach(element => {
       if(element['name'].substr(0,word.length).toLowerCase() == word.toLowerCase()){

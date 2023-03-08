@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar py-lg-4 bg-dark">
+        <nav id="nav-general" class="navbar py-lg-4 bg-dark">
             <div class="col-md-3 px-5 d-flex justify-content-lg-start justify-content-center">
                 <a href="./index.html" id="logo-link"><img id="img-logo" src="./assets/Logo Amazing Events.png"></a>
             </div>
@@ -25,6 +25,30 @@
                 <a href="./stats.html" type="button" class="col-lg-auto col-md-auto col-12 btn btn-outline-light mx-1">Stats</a>
             </div>
         </nav>
+        <!--MENU PARA CELULAR-->
+        
+        <nav id="nav-mobile" class="navbar navbar-dark bg-dark px-2">
+            <div class="col-12 row d-flex justify-content-between">
+              <div class="col-8 ">
+                <a href="./index.html" id="logo-link"><img id="img-logo" src="./assets/Logo Amazing Events.png"></a>
+              </div>
+              <button class="col-2 navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+          </nav>
+          <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+              <div class="col-md-9 container-fluid justify-content-end ">
+                <a href="./index.html" type="button" class="btn btn-outline-light m-1 col-12">Home</a>
+                <a href="./upcoming-events.html" type="button" class="col-12 btn btn-outline-light m-1">Upcoming Events</a>
+                <a href="./past-events.html" type="button" class="col-12 btn btn-outline-light m-1">Past Events</a>
+                <a href="#" type="button" class="col-12 btn btn-outline-light m-1">Contact</a>
+                <a href="./stats.html" type="button" class="col-12 btn btn-outline-light m-1">Stats</a>
+              </div>
+            </div>
+          </div>
+          <!------------------>
         <div id="carouselExampleFade" class="col-lg-12 d-flex justify-content-center carousel slide py-3">
           <div class="carousel-inner">
           <div class="carousel-item active">

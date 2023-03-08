@@ -15,6 +15,10 @@
     box-sizing: border-box;
 }
 
+#nav-mobile{
+    display:  none; 
+}
+
 #icon-search{
     height: 40px;
     width: 40px;
@@ -95,3 +99,15 @@ footer p{
     height: 100%;
     width: 100%;
 }
+
+@media (max-width: 600px) {
+
+    #nav-general{
+        display: none;
+    }
+    
+    #nav-mobile{
+        display:  block; 
+    }
+    
+  }
