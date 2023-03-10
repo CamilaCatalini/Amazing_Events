@@ -76,7 +76,9 @@ button:hover, a:hover{
     height: 10rem;
 }
 
-
+.sold-out{
+    display: none;
+}
 
 .card-img-top{
     height: 10rem;
@@ -98,6 +100,11 @@ footer p{
 #card-event img{
     height: 100%;
     width: 100%;
+}
+
+#footer-card{
+    background-color: #e0046c;
+    color: white;
 }
 
 @media (max-width: 600px) {
