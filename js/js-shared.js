@@ -20,7 +20,7 @@ function createCategories(events){
         template += `
             <div class="col-lg-3 col-md-3 col-6 form-check">
                 ${c}
-                <input onclick="selectCategoryChecked(this)" class="form-check-input border border-dark" name="check" type="checkbox" value="${c}" >
+                <input  class=" form-check-input border border-dark" name="check" type="checkbox" value="${c}" >
                 <label class="form-check-label" for="flexCheckDefault"></label>
             </div>
         `
@@ -33,6 +33,7 @@ function createCategories(events){
 //selectCategory: DEVUELVE UN OBJETO CON UN ARRAY QUE CONTIENE TODOS LOS EVENTOS SEGUN LAS
 //CATEGORIAS SELECCIONADAS Y UN ARRAY DE STRING CON LAS CATEGORIAS SELECCIONADAS.
 function selectCategory(element, array_selected_categories, array_selected_events, events){
+
     if(element.checked){
         array_selected_categories.push(element.value);
         array_selected_events = changeCardsForCategory(array_selected_categories, events);
@@ -96,7 +97,7 @@ function createCards(data){
                     </div>
                     <div class="row align-items-center ">
                         <p class="col-lg-6 col-6 fw-bold fs-5 price">price $${d['price']}</p>
-                        <a href="./detail.html?q=${d['_id']}" type="button" class="col-lg-6 col-6 btn btn-dark ">See more</a>
+                        <a href="./detail.html?q=${d['_id']}&r=${d['name']}" type="button" class="col-lg-6 col-6 btn btn-dark ">See more</a>
                     </div>
                 </div>
             </div>

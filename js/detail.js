@@ -1,8 +1,6 @@
 let params = new URLSearchParams(location.search);
 var id = params.get('q');
 
-console.log(id);
-
 let eventx = {};
 
 data.events.forEach(element => {
