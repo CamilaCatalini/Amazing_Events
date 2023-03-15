@@ -58,11 +58,22 @@ element_category.addEventListener("change", (e) => {
 //*addEventListener PARA BUSCADOR.
 const element_search = document.querySelector("#search");
 element_search.addEventListener("keyup", (e) => {
+    console.log(e.target.value)
     //BUSCADOR: SI EL ARRAY QUE CONTIENE LOS EVENTOS SELECCIONADOS ESTA VACIO, BUSCA EN
     //TODOS LOS EVENTOS FUTUROS, SINO SOLO EN LOS SELECCIONADOS POR CATEGORIA.
     if(array_selected_events.length == 0){
         search(e.target.value, data.events);
     }else{
         search(e.target.value, array_selected_events);
+    }
+});
+
+//*addEventListener PARA BOTON QUE ELIMINA EL TEXTO DEL BUSCADOR.
+element_search.addEventListener("click", () => {
+    deleteChildElements('cards-event');
+    if(array_selected_events.length == 0){
+        createCards(data.events);
+    }else{
+        createCards(array_selected_events);
     }
 });

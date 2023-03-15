@@ -80,3 +80,13 @@ element_search.addEventListener("keyup", (e) => {
         search(e.target.value, array_selected_events);
     }
 });
+
+//*addEventListener PARA BOTON QUE ELIMINA EL TEXTO DEL BUSCADOR.
+element_search.addEventListener("click", () => {
+    deleteChildElements('cards-event');
+    if(array_selected_events.length == 0){
+        createCards(past_events);
+    }else{
+        createCards(array_selected_events);
+    }
+});

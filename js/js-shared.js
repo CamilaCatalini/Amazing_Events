@@ -97,7 +97,7 @@ function createCards(data){
                     </div>
                     <div class="row align-items-center ">
                         <p class="col-lg-6 col-6 fw-bold fs-5 price">price $${d['price']}</p>
-                        <a href="./detail.html?q=${d['_id']}&r=${d['name']}" type="button" class="col-lg-6 col-6 btn btn-dark ">See more</a>
+                        <a href="./detail.html?q=${d['_id']}" type="button" class="col-lg-6 col-6 btn btn-dark ">See more</a>
                     </div>
                 </div>
             </div>
