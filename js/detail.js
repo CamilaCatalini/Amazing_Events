@@ -46,10 +46,11 @@ function loadDataInView(event){
     document.getElementById('event-price').innerHTML='Price: ' + str; 
 }
 
+//createCardsRelatedEvents: MUESTRA LOS EVENTOS RELACIONADOS. 
 function createCardsRelatedEvents(events){
     element = document.getElementById("related-events");
     let div = document.createElement("div");
-    div.className = "col-lg-12 row mx-3";
+    div.className = "col-lg-12 row mx-lg-3 mx-md-3";
     let template = '<p>Upcoming related events</p>';
     let description;
     for( const d of events){
@@ -59,7 +60,7 @@ function createCardsRelatedEvents(events){
         description = d['description']
       }
       template += `
-        <div class="col-lg-3 col-2 m-2 card border border-dark cards-events-detail ">
+        <div class="col-lg-3 col-2 m-lg-2 m-md-2 m-1 card border border-dark cards-events-detail ">
           <img src=${d['image']} class="card-img-top p-1 " alt="...">
           <span id="sold-out-${d['_id']}" class="sold-out position-absolute badge rounded-pill bg-danger">
               SOLD OUT
@@ -73,8 +74,8 @@ function createCardsRelatedEvents(events){
                   <p class="card-text px-2">${description}</p>
               </div>
               <div class="row align-items-center px-2">
-                  <p class="col-lg-6 col-6 fw-bold fs-5 price ">price $${d['price']}</p>
-                  <a href="./detail.html?q=${d['_id']}" type="button" class="col-lg-6 col-6 btn btn-dark ">See more</a>
+                  <p class="col-lg-6 col-6 fw-bold fs-lg-5 price ">price $${d['price']}</p>
+                  <a href="./detail.html?q=${d['_id']}" type="button" class="col-lg-6 col-6 btn btn-dark see-more">See more</a>
               </div>
           </div>
         </div>
@@ -84,6 +85,10 @@ function createCardsRelatedEvents(events){
     element.appendChild(div);
 }
 
+//loadRelatedEvents: CREA UN ARRAY CON LOS EVENTOS FUTUROS DE UNA CATEGORIA, EXCEPTO EL EVENTO
+//QUE TENGA EL MISMO _id QUE EL EVENTO QUE SE MUESTRA EN DETALLE(esto para que cuando muestre 
+//los eventos relacionados al seleccionado, no muestre este mismo). LUEGO, CREA LOS EVENTOS
+//RELACIONADOS POR LA MISMA CATEGORIA.  
 function loadRelatedEvents(events, category, id){
   let array_events = [];
   
@@ -93,6 +98,9 @@ function loadRelatedEvents(events, category, id){
     }
   });
 
+  //SI EL ARRAY CREADO TIENE MAS DE 3 EVENTOS, LO CORTO Y SOLO ME QUEDO CON LOS 3 PRIMEROS.
+  //EN EL CASO DE NO HABER EVENTOS FUTUROS CON ESA CATEGORIA, NO SE CREA LA SECCION DE
+  //EVENTOS RELACIONADOS.
   if(array_events.length > 3){
     createCardsRelatedEvents(array_events.slice(0,3));
   }else if(array_events.length != 0){
@@ -100,7 +108,6 @@ function loadRelatedEvents(events, category, id){
   }
  
 }
-
 
 let data = {}
 let upcoming_events = {}

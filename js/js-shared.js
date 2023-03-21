@@ -3,7 +3,7 @@
 function createCategories(events){
     let category = document.getElementById("categories");
     let div = document.createElement("div");
-    div.className = "px-lg-5 px-md-2 px-3 row d-flex align-items-center";
+    div.className = "px-lg-5 px-md-2 px-2 row d-flex align-items-center";
 
     let template = '';
 
@@ -12,7 +12,7 @@ function createCategories(events){
 
     for( const c of unique_categories){
         template += `
-            <div class="col-lg-3 col-md-3 col-6 form-check">
+            <div class="col-lg-1 col-md-3 col-3 form-check">
                 ${c}
                 <input  class=" form-check-input border border-dark" name="check" type="checkbox" value="${c}" >
                 <label class="form-check-label" for="flexCheckDefault"></label>
@@ -80,35 +80,34 @@ function changeCardsForCategory(categories, events){
 function createCards(data){
     let cards = document.getElementById("cards-event");
     let div = document.createElement("div");
-    div.className = "row justify-content-center";
+    div.className = "row px-lg-5 px-md-3 px-2";
 
     let template = '';
 
     let description;
     for( const d of data){
-        if(d['description'].length>=70){
-            description = d['description'].slice(0,70) + '...';
+        if(d['description'].length>=60){
+            description = d['description'].slice(0,50) + '...';
           }else{
             description = d['description']
           }
         template += `
-            <div class="col-lg-4 m-2 card border border-dark cards-events ">
+            <div class="col-lg-4 m-lg-2 m-1 card border border-dark cards-events ">
                 <img src=${d['image']} class="card-img-top p-1 " alt="...">
-                <span id="sold-out-${d['_id']}" class="sold-out position-absolute badge rounded-pill bg-danger m-1">
+                <span id="sold-out-${d['_id']}" class="sold-out position-absolute badge rounded-pill bg-danger m-lg-1">
                     SOLD OUT
                     <span class="visually-hidden ">unread messages</span>
                 </span>
-                <div class="card-body row align-items-end">
+                <div class="card-body ">
                     <div class="card-info">
                         <h5 class="card-title text-center ">
                             ${d['name']}
-                            
                         </h5>
-                        <p class="card-text p-2">${description}</p>
+                        <p class="card-text p-lg-2">${description}</p>
                     </div>
                     <div class="row align-items-center ">
-                        <p class="col-lg-6 col-6 fw-bold fs-5 price ">price $${d['price']}</p>
-                        <a href="./detail.html?q=${d['_id']}" type="button" class="col-lg-6 col-6 btn btn-dark ">See more</a>
+                        <p class="col-lg-6 col-6 fw-bold fs-lg-5 price">price $${d['price']}</p>
+                        <a href="./detail.html?q=${d['_id']}" type="button" class="col-lg-6 col-6 btn btn-dark see-more">See more</a>
                     </div>
                 </div>
             </div>

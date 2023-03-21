@@ -67,9 +67,9 @@ function loadStaticEvent(events){
 
         template += `
             <ul class="list-group list-group-horizontal-md list-group-horizontal">
-                <li class="col-lg-4 col-4 list-group-item border text-center border-dark">${name_event_higher}</li>
-                <li class="col-lg-4 col-4 list-group-item border text-center border-dark">${name_event_lowest}</li>
-                <li class="col-lg-4 col-4 list-group-item border text-center border-dark">${name_event_capacity}</li>
+                <li class="col-lg-4 col-4 list-group-item border text-center border-dark">${name_event_higher} (${higher_percentage_attendance.toFixed(2)}%)</li>
+                <li class="col-lg-4 col-4 list-group-item border text-center border-dark">${name_event_lowest} (${lowest_percentage_attendance.toFixed(2)}%)</li>
+                <li class="col-lg-4 col-4 list-group-item border text-center border-dark">${name_event_capacity} (${larger_capacity})</li>
             </ul>
         `
     stats.innerHTML = template;
