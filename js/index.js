@@ -37,8 +37,16 @@ let array_selected_categories = [];
 //ARRAY DE EVENTOS QUE SE CARGA SOLO CON LOS EVENTOS SEGUN LA CATEGORIA SELECCIONADA.
 let array_selected_events = [];
 
-createCards(data.events);
-createCategories(data.events);
+
+let data = {}
+async function getData(){
+    data = await connectedApi()
+    createCards(data.events);
+    createCategories(data.events);
+  }
+getData();
+
+
 
 //addEventListener PARA CATEGORIAS
 const element_category = document.querySelector("#categories");
@@ -58,7 +66,6 @@ element_category.addEventListener("change", (e) => {
 //*addEventListener PARA BUSCADOR.
 const element_search = document.querySelector("#search");
 element_search.addEventListener("keyup", (e) => {
-    console.log(e.target.value)
     //BUSCADOR: SI EL ARRAY QUE CONTIENE LOS EVENTOS SELECCIONADOS ESTA VACIO, BUSCA EN
     //TODOS LOS EVENTOS FUTUROS, SINO SOLO EN LOS SELECCIONADOS POR CATEGORIA.
     if(array_selected_events.length == 0){

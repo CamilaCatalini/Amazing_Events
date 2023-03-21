@@ -1,13 +1,3 @@
-function getPastEvents(){
-    let array_past_events = [];
-
-    for( const event of data.events){
-        if(data.currentDate > event['date']){
-            array_past_events.push(event);
-        }     
-    }
-    return(array_past_events);
-}
 
 /*
 SE REEMPLAZO POR *addEventListener PARA CATEGORIAS.
@@ -47,12 +37,18 @@ let array_selected_categories = [];
 //ARRAY DE EVENTOS QUE SE CARGA SOLO CON LOS EVENTOS SEGUN LA CATEGORIA SELECCIONADA.
 let array_selected_events = [];
 
-//getPastEvents: ME DEVUELVE EN upcoming_events LOS EVENTOS PASADOS. 
-let past_events = getPastEvents();
+let data = {}
+let past_events = {}
+async function getData(){
+    data = await connectedApi()
+    //getPastEvents: ME DEVUELVE EN upcoming_events LOS EVENTOS PASADOS. 
+    past_events = getPastEvents(data);
 
-createCards(past_events)
-createCategories(past_events);
-showSoldOut(past_events);
+    createCards(past_events)
+    createCategories(past_events);
+  }
+
+getData()
 
 //addEventListener PARA CATEGORIAS
 const element_category = document.querySelector("#categories");

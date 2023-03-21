@@ -7,14 +7,8 @@ function createCategories(events){
 
     let template = '';
 
-    //ARRAY DE STRINGS QUE CONTIENE TODAS LAS CATEGORIAS(INCLUYENDO REPETIDAS).
-    let categories = [];
-    for( const c of events){
-        categories.push(c['category']);
-    }
-
     //ARRAY DE STRING CON TODAS LAS CATEGORIAS(SIN REPETIR).
-    let unique_categories = [... new Set(categories)];
+    let unique_categories = createArrayUniqueCategory(events);
 
     for( const c of unique_categories){
         template += `
@@ -28,6 +22,17 @@ function createCategories(events){
 
     div.innerHTML = template;
     category.appendChild(div);
+}
+
+function createArrayUniqueCategory(events){
+    //ARRAY DE STRINGS QUE CONTIENE TODAS LAS CATEGORIAS(INCLUYENDO REPETIDAS).
+    let categories = [];
+    for( const c of events){
+        categories.push(c['category']);
+    }
+
+    //ARRAY DE STRING CON TODAS LAS CATEGORIAS(SIN REPETIR).
+    return unique_categories = [... new Set(categories)];
 }
 
 //selectCategory: DEVUELVE UN OBJETO CON UN ARRAY QUE CONTIENE TODOS LOS EVENTOS SEGUN LAS
@@ -75,11 +80,17 @@ function changeCardsForCategory(categories, events){
 function createCards(data){
     let cards = document.getElementById("cards-event");
     let div = document.createElement("div");
-    div.className = "row d-flex justify-content-center";
+    div.className = "row justify-content-center";
 
     let template = '';
 
+    let description;
     for( const d of data){
+        if(d['description'].length>=70){
+            description = d['description'].slice(0,70) + '...';
+          }else{
+            description = d['description']
+          }
         template += `
             <div class="col-lg-4 m-2 card border border-dark cards-events ">
                 <img src=${d['image']} class="card-img-top p-1 " alt="...">
@@ -93,10 +104,10 @@ function createCards(data){
                             ${d['name']}
                             
                         </h5>
-                        <p class="card-text p-2">${d['description']}</p>
+                        <p class="card-text p-2">${description}</p>
                     </div>
                     <div class="row align-items-center ">
-                        <p class="col-lg-6 col-6 fw-bold fs-5 price">price $${d['price']}</p>
+                        <p class="col-lg-6 col-6 fw-bold fs-5 price ">price $${d['price']}</p>
                         <a href="./detail.html?q=${d['_id']}" type="button" class="col-lg-6 col-6 btn btn-dark ">See more</a>
                     </div>
                 </div>
@@ -133,6 +144,9 @@ function search(word, events){
     createCards(array_events);
 }
 
+//showSoldOut: CADA CARD DE EVENTO TIENE UNA ETIQUETA SPAM QUE QUE CONTIENE UN MSJ DE sold out
+//QUE AL PRINCIPIO SE ENCUENTRA OCULTO.
+//SI LA CAPACIDAD DEL EVENTO SE AGOTO, MUESTRA EL MSJ MEDIANTE UN display:block.
 function showSoldOut(events){
     events.forEach(element => {
         if((element['capacity'] - element['assistance'] == 0 ) || (element['capacity'] - element['estimate'] == 0 )){
@@ -140,4 +154,97 @@ function showSoldOut(events){
             e.style.display = 'block';
         }
     });
+}
+
+//getUpcomingEvents: DEVUELVE LOS EVENTOS FUTUROS.
+function getUpcomingEvents(events){
+    let array_upcoming_events = [];
+    for( const event of events.events){
+        if(data.currentDate <= event['date']){
+            array_upcoming_events.push(event);
+        }     
+    }
+    return(array_upcoming_events);
+}
+
+//getPastEvents: DEVUELVE LOS EVENTOS PASADOS.
+function getPastEvents(events){
+    let array_past_events = [];
+    for( const event of events.events){
+        if(data.currentDate > event['date']){
+            array_past_events.push(event);
+        }     
+    }
+    return(array_past_events);
+}
+
+//createArrayStats: CALCULA POR CADA CATEGORIA: revenues, percentaje of attendance Y DEVUELVE
+//ESA INFO EN UN ARRAY.
+function createArrayStats(categories, events){
+    var revenues = 0;
+    var porcentage = 0;
+    var average = 0;
+    var array_stats = [];
+
+    //ORDENA LOS EVENTOS POR SU CATEGORIA.
+    ordered_events = events.sort(function (a, b) {
+        if (a.category > b.category) {
+          return 1;
+        }
+        if (a.category < b.category) {
+          return -1;
+        }
+        return 0;
+      })
+    
+    //RECORRE LAS CATEGORIAS ORDENADAS, 
+    for( const category of categories.sort()){
+        var events_by_category = ordered_events.filter(e => e.category == category);
+        //ACA SIMPLEMENTE CORTO EL ARRAY DE ordered_events PARA CUANDO HAGA EL FILTER
+        //DE LA LINEA DE ARRIBA, NO VUELVA A RECORRER LOS EVENTOS CON UNA CATEGORIA
+        //QUE YA FUE CALCULADA.
+        ordered_events = ordered_events.slice(events_by_category.length,ordered_events.length)
+        events_by_category.forEach(element => {
+            //COMO DATA TIENE EVENTOS QUE CONTIENEN estimate O assistance, TOMO SOLO EL VALOR
+            //QUE TIENE event['assistance'] SI ESTE ES undefined SIGNIFICA QUE ESTE EVENTO NO TIENE
+            //EL CAMPO assistance SINO QUE TIENE estimate.
+            if(element['estimate'] == undefined){
+                revenues = revenues + (element['assistance']*element['price']);
+                porcentage = porcentage + (element['assistance']/element['capacity']);
+            }else{
+                revenues = revenues + (element['estimate']*element['price']);
+                porcentage = porcentage + (element['estimate']/element['capacity']);
+            }
+        });
+        average = (porcentage/events_by_category.length)*100;
+    
+        array_stats.push({'category': category,'revenues': revenues, 'percentage': average});
+        
+        revenues = 0;
+        porcentage = 0;
+        average = 0;
+    }
+    return array_stats;
+}
+
+//loadTable: CARGA LAS TABLAS DE: Upcoming events statistics by category Y Past events statistics by category.
+function loadTable(events, type_event){
+    let stats;
+    if(type_event == 'upcoming'){
+        stats = document.getElementById("stats-upcoming-events");
+    }else if(type_event == 'past'){
+        stats = document.getElementById("stats-past-events");
+    }    
+    let template = '';
+
+    for( const e of events){
+        template += `
+            <ul class="list-group list-group-horizontal-md list-group-horizontal">
+                <li class="col-lg-4 col-4 list-group-item border border-dark text-center">${e['category']}</li>
+                <li class="col-lg-4 col-4 list-group-item border border-dark text-center">${e['revenues']}</li>
+                <li class="col-lg-4 col-4 list-group-item border border-dark text-center">${(e['percentage']).toFixed(2)}%</li>
+            </ul>
+        `
+    }
+    stats.innerHTML = template;
 }

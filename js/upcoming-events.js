@@ -1,14 +1,3 @@
-function getUpcomingEvents(){
-    let array_upcoming_events = [];
-
-    for( const event of data.events){
-        if(data.currentDate < event['date']){
-            array_upcoming_events.push(event);
-        }     
-    }
-    return(array_upcoming_events);
-}
-
 /*
 SE REEMPLAZO POR *addEventListener PARA CATEGORIAS.
 
@@ -48,11 +37,20 @@ let array_selected_categories = [];
 //ARRAY DE EVENTOS QUE SE CARGA SOLO CON LOS EVENTOS SEGUN LA CATEGORIA SELECCIONADA.
 let array_selected_events = [];
 
-//getUpcomingEvents: ME DEVUELVE EN upcoming_events LOS EVENTOS FUTUROS. 
-let upcoming_events = getUpcomingEvents();
 
-createCards(upcoming_events);
-createCategories(upcoming_events);
+
+let data = {}
+let upcoming_events = {}
+async function getData(){
+    data = await connectedApi()
+    //getUpcomingEvents: ME DEVUELVE EN upcoming_events LOS EVENTOS FUTUROS. 
+    upcoming_events = getUpcomingEvents(data);
+
+    createCards(upcoming_events);
+    createCategories(upcoming_events);
+}
+
+getData()
 
 //addEventListener PARA CATEGORIAS
 const element_category = document.querySelector("#categories");

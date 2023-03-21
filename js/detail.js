@@ -1,10 +1,10 @@
 //getEventById: TOMA EL ID PASADO POR URL Y DEVUELVE EL EVENTO CORRESPONDIENTE. 
-function getEventById(){
+function getEventById(events){
     let params = new URLSearchParams(location.search);
     var id = params.get('q');
     var eventx = {};
     //BUSCA EN DATA EL EVENTO QUE COINCIDA CON EL ID.
-    data.events.forEach(element => {
+    events.forEach(element => {
         if(element['_id'] == id){
           eventx = element;
         }
@@ -39,10 +39,81 @@ function loadDataInView(event){
         document.getElementById('event-assistance').innerHTML='Assistance: ' + str; 
     }
 
+    str=event['date']; 
+    document.getElementById('event-date').innerHTML=str; 
+
     str=event['price']; 
     document.getElementById('event-price').innerHTML='Price: ' + str; 
 }
 
-//eventx CONTIENE EL EVENTO QUE CORRESPONDE AL ID OBTENIDO DE LA URL. 
-let eventx = getEventById();
-loadDataInView(eventx); 
+function createCardsRelatedEvents(events){
+    element = document.getElementById("related-events");
+    let div = document.createElement("div");
+    div.className = "col-lg-12 row mx-3";
+    let template = '<p>Upcoming related events</p>';
+    let description;
+    for( const d of events){
+      if(d['description'].length>=70){
+        description = d['description'].slice(0,80) + '...';
+      }else{
+        description = d['description']
+      }
+      template += `
+        <div class="col-lg-3 col-2 m-2 card border border-dark cards-events-detail ">
+          <img src=${d['image']} class="card-img-top p-1 " alt="...">
+          <span id="sold-out-${d['_id']}" class="sold-out position-absolute badge rounded-pill bg-danger">
+              SOLD OUT
+              <span class="visually-hidden ">unread messages</span>
+          </span>
+          <div class="row align-items-end">
+              <div class="card-info-detail">
+                  <h5 class="card-title text-center ">
+                      ${d['name']}
+                  </h5>
+                  <p class="card-text px-2">${description}</p>
+              </div>
+              <div class="row align-items-center px-2">
+                  <p class="col-lg-6 col-6 fw-bold fs-5 price ">price $${d['price']}</p>
+                  <a href="./detail.html?q=${d['_id']}" type="button" class="col-lg-6 col-6 btn btn-dark ">See more</a>
+              </div>
+          </div>
+        </div>
+        `
+    }
+    div.innerHTML = template;
+    element.appendChild(div);
+}
+
+function loadRelatedEvents(events, category, id){
+  let array_events = [];
+  
+  events.forEach(element => {
+    if((element['category'] == category)&&(element['_id'] != id)){
+      array_events.push(element);
+    }
+  });
+
+  if(array_events.length > 3){
+    createCardsRelatedEvents(array_events.slice(0,3));
+  }else if(array_events.length != 0){
+    createCardsRelatedEvents(array_events);
+  }
+ 
+}
+
+
+let data = {}
+let upcoming_events = {}
+async function getData(){
+  data = await connectedApi()
+  //eventx CONTIENE EL EVENTO QUE CORRESPONDE AL ID OBTENIDO DE LA URL. 
+  let event = getEventById(data.events);
+  loadDataInView(event); 
+  upcoming_events = getUpcomingEvents(data);
+  loadRelatedEvents(upcoming_events, event['category'], event['_id']);
+}
+getData();
+
+
+
+

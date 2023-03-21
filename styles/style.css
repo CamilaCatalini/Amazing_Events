@@ -97,9 +97,11 @@ footer p{
 
 /** DETAIL **/
 
+
+
 #card-event img{
-    height: 100%;
-    width: 100%;
+    height: 18rem;
+    width: 500px;
 }
 
 #footer-card{
@@ -107,7 +109,60 @@ footer p{
     color: white;
 }
 
+.cards-events-detail{
+    height: 300px;
+    width: 22rem;
+}
+
+.card-info-detail{
+    text-align: justify;
+    height: 6rem;
+}
+
+.card-body{
+    height: 18rem;
+}
+
+#event-description{
+    text-align: justify;
+    height: 12rem;
+}
+
+#event-image{
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+
+    .cards-events{
+        width: 14rem;
+    }
+
+    .cards-events-detail{
+        
+        height: 330px;
+        width: 14rem;
+    }
+
+    .card-info-detail{
+        height: 8rem;
+    }
+    
+  }
+
 @media (max-width: 600px) {
+
+    .card-body{
+        height: 14rem;
+    }
+
+    #event-description{
+        height: 8rem;
+    }
+
+    .cards-events-detail{
+        width: 18rem;
+    }
 
     #nav-general{
         display: none;
