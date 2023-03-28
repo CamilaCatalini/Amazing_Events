@@ -15,6 +15,10 @@
     box-sizing: border-box;
 }
 
+body{
+    height: 100vh;
+}
+
 #nav-mobile{
     display:  none; 
 }
@@ -47,6 +51,10 @@ button:hover, a:hover{
 #img-logo{
     height: 50px;
     width: 120px;
+}
+
+header{
+    margin-bottom: 2%;
 }
 
 #carouselExampleFade{
@@ -93,6 +101,15 @@ button:hover, a:hover{
     height: 50px;
 }
 
+main{
+    padding-bottom: 10%;
+}
+
+footer{
+    position: fixed;
+    padding-top: 5% !important;
+    bottom: 0;
+}
 
 footer p{
     color: white;
