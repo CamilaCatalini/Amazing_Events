@@ -12,7 +12,7 @@ function createCategories(events){
 
     for( const c of unique_categories){
         template += `
-            <div class="col-lg-1 col-md-3 col-1 form-check ">
+            <div class="col-lg-1 col-md-3 col-3 form-check">
                 ${c}
                 <input  class=" form-check-input border border-dark" name="check" type="checkbox" value="${c}" >
                 <label class="form-check-label" for="flexCheckDefault"></label>

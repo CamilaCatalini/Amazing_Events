@@ -19,7 +19,6 @@ body{
     height: 100vh;
 }
 
-
 #nav-mobile{
     display:  none; 
 }
@@ -82,12 +81,11 @@ header{
 
 .cards-events{
     width: 18rem;
-    height: 20rem;
 }
 
 .card-info{
     text-align: justify;
-    height: 6rem;
+    height: 8rem;
 }
 
 .sold-out{
@@ -99,25 +97,23 @@ header{
 }
 
 #icon-redes img{
-    background-color: white;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }
 
 main{
-    padding-bottom: 5%;
+    padding-bottom: 10%;
 }
 
 footer{
-    height: 40px;
     position: fixed;
+    padding-top: 5% !important;
     bottom: 0;
 }
 
 footer p{
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 /** DETAIL **/
@@ -187,23 +183,12 @@ footer p{
     
   }
 
-@media (max-width: 430px) {
+@media (max-width: 600px) {
 
-    main{
-        padding-bottom: 40%;
-    }
-
-    .form-check{
-        width: 4rem;
-        font-size: 0.6rem;
-    }
-
-    
     /** INDEX **/
 
     .cards-events{
-        width: 9rem;
-        height: 16rem;
+        width: 12rem;
     }
 
     .card-title{
@@ -222,6 +207,7 @@ footer p{
         height: 10rem;
     }
 
+
     /** DETAIL **/
 
     .card-img-top{
@@ -229,29 +215,20 @@ footer p{
     }
 
     .card-info{
-        height: 7rem;
-    }
-
-    div#related-events div{
-        width: 100%;
-        overflow: auto;
-        white-space: nowrap;
-    }
-
-    div#related-events .cards-events-detail{
-        display: inline-block;
-        height: 230px;
-        width: 8rem;
-    }
-
-    .card-info-detail {
-        white-space: normal !important;
-        width: 8rem !important;
         height: 6rem;
+    }
+
+    .card-info-detail{
+        height: 8rem;
     }
 
     #event-description{
         height: 3rem;
+    }
+
+    .cards-events-detail{
+        height: 260px;
+        width: 8rem;
     }
 
     #nav-general{
@@ -263,15 +240,6 @@ footer p{
     }
     
     #footer-card p{
-        font-size: 0.8rem;
-    }
-
-    #icon-redes img{
-        width: 20px;
-        height: 20px;
-    }
-
-    footer div p{
         font-size: 0.8rem;
     }
   }

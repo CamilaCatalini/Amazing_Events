@@ -15,11 +15,11 @@
     <header>
         <nav id="nav-general" class="navbar py-lg-4 bg-dark">
             <div class="col-md-3 col-12 px-5 d-flex justify-content-lg-start justify-content-center">
-              <a href="./index.html" id="logo-link"><img id="img-logo" src="./assets/Logo Amazing Events.png"></a>
+                <a href="./index.html" id="logo-link"><img id="img-logo" src="./assets/Logo Amazing Events.png"></a>
             </div>
             <div class="col-md-9 container-fluid justify-content-end ">
-                <a href="#" type="button" class="btn btn-outline-light mx-1 col-lg-auto col-md-auto col-12">Home</a>
-                <a href="./upcoming-events.html" type="button" class="col-lg-auto col-md-auto col-12 btn btn-outline-light mx-1">Upcoming Events</a>
+                <a href="/index.html" type="button" class="btn btn-outline-light mx-1 col-lg-auto col-md-auto col-12">Home</a>
+                <a href="#" type="button" class="col-lg-auto col-md-auto col-12 btn btn-outline-light mx-1">Upcoming Events</a>
                 <a href="./past-events.html" type="button" class="col-lg-auto col-md-auto col-12 btn btn-outline-light mx-1">Past Events</a>
                 <a href="./contact.html" type="button" class="col-lg-auto col-md-auto col-12 btn btn-outline-light mx-1">Contact</a>
                 <a href="./stats.html" type="button" class="col-lg-auto col-md-auto col-12 btn btn-outline-light mx-1">Stats</a>
@@ -40,8 +40,8 @@
         <div class="collapse" id="navbarToggleExternalContent">
           <div class="bg-dark p-4">
             <div class="col-md-9 container-fluid justify-content-end ">
-              <a href="#" type="button" class="btn btn-outline-light m-1 col-12">Home</a>
-              <a href="./upcoming-events.html" type="button" class="col-12 btn btn-outline-light m-1">Upcoming Events</a>
+              <a href="./index.html" type="button" class="btn btn-outline-light m-1 col-12">Home</a>
+              <a href="#" type="button" class="col-12 btn btn-outline-light m-1">Upcoming Events</a>
               <a href="./past-events.html" type="button" class="col-12 btn btn-outline-light m-1">Past Events</a>
               <a href="./contact.html" type="button" class="col-12 btn btn-outline-light m-1">Contact</a>
               <a href="./stats.html" type="button" class="col-12 btn btn-outline-light m-1">Stats</a>
@@ -52,77 +52,54 @@
         <div id="carouselExampleFade" class="col-lg-12 d-flex justify-content-center carousel slide py-3">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <h1 class="text-center fw-bold">Home</h1>
+                <h1 class="text-center fw-bold">Upcoming Events</h1>
               </div>
-            </div>
-            <a href="./stats.html" class="carousel-control-prev" type="button">
+            <a href="./index.html" class="carousel-control-prev" type="button">
               <img src="./assets/flecha2.png">
+              <span class="visually-hidden">Previous</span>
             </a>
-            <a href="./upcoming-events.html" class="carousel-control-next" type="button">
+            <a href="./past-events.html" class="carousel-control-next" type="button">
               <img src="./assets/flecha.png">
+              <span class="visually-hidden">Next</span>
             </a>
         </div>
     </header>
     
     <main class="col-lg-12 row ">
-        <div id="categories" class="col-lg-8 col-md-9 col-12 d-flex align-content-center px-4">
+        <div id="categories" class="col-lg-8 col-md-9 col-12 d-flex align-content-center">
           <!---->
         </div>
-        <div class="col-lg-4 col-md-3 col-12 px-lg-5 px-md-2 px-4 d-flex justify-content-lg-end justify-content-center">
-            <nav class="navbar">
-                  <form class="d-flex" role="search">
-                    <input id="search" class="form-control border border-dark me-1" type="search" placeholder="Search" aria-label="Search">
-                    <img id="icon-search" src="./assets/icon-search.png">
-                  </form>
-            </nav>
+        <div class="col-lg-4 col-md-3 col-12 px-lg-5 px-md-2 px-4 d-flex justify-content-end">
+              <nav class="navbar">
+                    <form class="d-flex" role="search">
+                      <input id="search" class="form-control border border-dark me-1" type="search" placeholder="Search" aria-label="Search">
+                      <img id="icon-search" src="./assets/icon-search.png">
+                    </form>
+              </nav>
         </div>
-        <div id="cards-event" class="col-lg-12 col-12 p-lg-3 p-md-3 px-0 ">
-            <!---->
+        <div id="cards-event" class="col-lg-12 col-12 p-lg-3 p-md-3 p-1">
+          <!---->
         </div>
     </main>
     
-    <footer class="col-12 p-1 bg-dark">
-      <div class=" row  d-flex justify-content-between align-items-center">
-        <div id="icon-redes" class="col-lg-6 col-md-6 col-8 row px-lg-5 px-3">
-            <a class="col-lg-1 col-md-2 col-2"><img src="./assets/redes/instagram-icon.png"></a>
-            <a class="col-lg-1 col-md-2 col-2"><img src="./assets/redes/facebook-icon.png"></a>
-            <a class="col-lg-1 col-md-2 col-2"><img src="./assets/redes/whatsapp-icon.png"></a>
+    <footer class="col-12 p-2  bg-dark">
+        <div class=" row  d-flex justify-content-between align-items-center">
+          <div id="icon-redes" class="col-lg-6 col-md-6 col-12 row px-5">
+              <a class="col-lg-1 col-md-2 col-4"><img src="./assets/redes/instagram-icon.png"></a>
+              <a class="col-lg-1 col-md-2 col-4"><img src="./assets/redes/facebook-icon.png"></a>
+              <a class="col-lg-1 col-md-2 col-4"><img src="./assets/redes/whatsapp-icon.png"></a>
+          </div>
+          <div class="col-lg-2 col-md-4 col-12">
+              <p class="text-center">Cohort FE13-TN</p>
+          </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-4 py-lg-0 py-2">
-            <p class="text-center">Cohort FE13-TN</p>
-        </div>
-      </div>
     </footer>
-
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-    
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      const firebaseConfig = {
-        apiKey: "AIzaSyCsDJtV7W-96DMOjiVtvE1FZBQZtTv-JLc",
-        authDomain: "amazing-events-e7666.firebaseapp.com",
-        projectId: "amazing-events-e7666",
-        storageBucket: "amazing-events-e7666.appspot.com",
-        messagingSenderId: "810240076285",
-        appId: "1:810240076285:web:186b9fd2ef9d0faea49194",
-        measurementId: "G-4VTP3K9ZEG"
-      };
-    
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-    </script>
 
     <script src="./js/dataJson.js"></script>
     <script src="./js/connected-api.js"></script>
     <script src="./js/js-shared.js"></script>
-    <script src="./js/index.js"></script>
-    
+    <script src="./js/upcoming-events.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

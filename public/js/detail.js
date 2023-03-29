@@ -50,13 +50,8 @@ function loadDataInView(event){
 function createCardsRelatedEvents(events){
     element = document.getElementById("related-events");
     let div = document.createElement("div");
-    if (screen.width <= 320){
-      div.className = "col-lg-12 mx-lg-3 mx-md-3";
-    }else if (screen.width >= 760){
-      div.className = "col-lg-12 row mx-lg-3 mx-md-3";
-    }
-    element.innerHTML = '<p class="px-2">Upcoming related events</p>';
-    let template = '';
+    div.className = "col-lg-12 row mx-lg-3 mx-md-3";
+    let template = '<p>Upcoming related events</p>';
     let description;
     for( const d of events){
       if(d['description'].length>=70){
@@ -116,19 +111,16 @@ function loadRelatedEvents(events, category, id){
 
 let data = {}
 let upcoming_events = {}
-let eventx = {};
 async function getData(){
   data = await connectedApi()
   //eventx CONTIENE EL EVENTO QUE CORRESPONDE AL ID OBTENIDO DE LA URL. 
-  eventx = getEventById(data.events);
-  loadDataInView(eventx); 
+  let event = getEventById(data.events);
+  loadDataInView(event); 
   upcoming_events = getUpcomingEvents(data);
-  loadRelatedEvents(upcoming_events, eventx['category'], eventx['_id']);
+  loadRelatedEvents(upcoming_events, event['category'], event['_id']);
 }
 getData();
 
-window.onresize = function() {
-  loadRelatedEvents(upcoming_events, eventx['category'], eventx['_id']);
-}
+
 
 
