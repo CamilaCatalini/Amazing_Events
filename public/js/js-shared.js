@@ -12,7 +12,7 @@ function createCategories(events){
 
     for( const c of unique_categories){
         template += `
-            <div class="col-lg-1 col-md-3 col-3 form-check">
+            <div class="col-lg-1 col-md-3 col-1 form-check ">
                 ${c}
                 <input  class=" form-check-input border border-dark" name="check" type="checkbox" value="${c}" >
                 <label class="form-check-label" for="flexCheckDefault"></label>
@@ -92,12 +92,11 @@ function createCards(data){
             description = d['description']
           }
         template += `
-            <div class="col-lg-4 m-lg-2 m-1 card border border-dark cards-events ">
+            <div id="cards-events-${d['_id']}" class="col-lg-4 m-lg-2 m-1 card border border-dark cards-events ">
+                <div class="sold-out" id="sold-out-${d['_id']}" >
+                    <img src="./assets/sold-out.png">
+                </div>
                 <img src=${d['image']} class="card-img-top p-1 " alt="...">
-                <span id="sold-out-${d['_id']}" class="sold-out position-absolute badge rounded-pill bg-danger m-lg-1">
-                    SOLD OUT
-                    <span class="visually-hidden ">unread messages</span>
-                </span>
                 <div class="card-body ">
                     <div class="card-info">
                         <h5 class="card-title text-center ">
@@ -118,6 +117,7 @@ function createCards(data){
     cards.appendChild(div);
 
     showSoldOut(data);
+  
 }
 
 //deleteChildElements: ELIMINA TODOS LOS ELEMENTOS HIJOS DE ELEMENTO SELECCIONADO 
@@ -135,12 +135,17 @@ function search(word, events){
     let array_events = [];
 
     events.forEach(element => {
-      if(element['name'].substr(0,word.length).toLowerCase() == word.toLowerCase()){
+      if(element['name'].toLowerCase().includes(word.toLowerCase())){
         array_events.push(element);
       }
     });
     deleteChildElements('cards-event');
     createCards(array_events);
+    const sections = document.querySelectorAll(".card-title");
+    sections.forEach(el => {
+      el.innerHTML = el.innerText;
+      el.innerHTML = el.innerText.replace(new RegExp(`(${word})`,"i"), "<strong style='color: #e0046c'>$1</strong>");
+    });
 }
 
 //showSoldOut: CADA CARD DE EVENTO TIENE UNA ETIQUETA SPAM QUE QUE CONTIENE UN MSJ DE sold out
@@ -149,6 +154,9 @@ function search(word, events){
 function showSoldOut(events){
     events.forEach(element => {
         if((element['capacity'] - element['assistance'] == 0 ) || (element['capacity'] - element['estimate'] == 0 )){
+            
+            e = document.getElementById("cards-events-"+element['_id']);
+            e.style.filter = "brightness(60%)";
             e = document.getElementById("sold-out-"+element['_id']);
             e.style.display = 'block';
         }

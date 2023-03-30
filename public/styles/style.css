@@ -19,6 +19,7 @@ body{
     height: 100vh;
 }
 
+
 #nav-mobile{
     display:  none; 
 }
@@ -81,11 +82,12 @@ header{
 
 .cards-events{
     width: 18rem;
+    height: 20rem;
 }
 
 .card-info{
     text-align: justify;
-    height: 8rem;
+    height: 6rem;
 }
 
 .sold-out{
@@ -97,23 +99,25 @@ header{
 }
 
 #icon-redes img{
-    width: 50px;
-    height: 50px;
+    background-color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
 }
 
 main{
-    padding-bottom: 10%;
+    padding-bottom: 5%;
 }
 
 footer{
+    height: 40px;
     position: fixed;
-    padding-top: 5% !important;
     bottom: 0;
 }
 
 footer p{
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 /** DETAIL **/
@@ -130,7 +134,7 @@ footer p{
 
 .cards-events-detail{
     height: 300px;
-    width: 22rem;
+    width: 16rem;
 }
 
 .card-info-detail{
@@ -147,7 +151,36 @@ footer p{
     height: 100%;
 }
 
+.sold-out{
+    display: none;
+}
+
+.sold-out img{
+    position: absolute;
+    margin-top: 8%;
+    height: 100px;
+    width: 290px;
+    z-index: 4;
+}
+
+
+#sold-out{
+    display: none;
+}
+
+#sold-out img{
+    position: absolute;
+    height: 60px;
+    width: 100px;
+    z-index: 4;
+}
+
 @media (max-width: 768px) {
+
+    .sold-out img{
+        height: 100px;
+        width: 220px;
+    }
 
     .form-check{
         width: 5rem;
@@ -173,22 +206,49 @@ footer p{
 
     .cards-events-detail{
         
-        height: 330px;
-        width: 14rem;
+        height: 300px;
+        width: 10rem;
     }
 
     .card-info-detail{
-        height: 8rem;
+        height: 6rem;
+    }
+
+    .card-title{
+        font-size: 0.8rem;
+    }
+
+    .see-more{
+        font-size: 0.6rem;
     }
     
-  }
+}
 
-@media (max-width: 600px) {
+@media (max-width: 425px) {
+
+    .sold-out img{
+        margin: 3%;
+        height: 90px;
+        width: 180px;
+    }
+
+    main{
+        padding-bottom: 10%;
+    }
+
+    #nav-general{
+        display: none;
+    }
+    
+    #nav-mobile{
+        display:  block; 
+    }
 
     /** INDEX **/
 
     .cards-events{
-        width: 12rem;
+        width: 11.8rem;
+        height: 18rem;
     }
 
     .card-title{
@@ -207,7 +267,6 @@ footer p{
         height: 10rem;
     }
 
-
     /** DETAIL **/
 
     .card-img-top{
@@ -215,31 +274,69 @@ footer p{
     }
 
     .card-info{
-        height: 6rem;
+        height: 7rem;
     }
 
-    .card-info-detail{
-        height: 8rem;
+    div#related-events div{
+        width: 100%;
+        overflow: auto;
+        white-space: nowrap;
+    }
+
+    div#related-events .cards-events-detail{
+        display: inline-block;
+        height: 230px;
+        width: 8rem;
+    }
+
+    .card-info-detail {
+        white-space: normal !important;
+        width: 8rem !important;
+        height: 6rem;
     }
 
     #event-description{
         height: 3rem;
     }
+}
 
-    .cards-events-detail{
-        height: 260px;
-        width: 8rem;
+@media (max-width: 360px) {
+    .cards-events{
+        width: 10rem;
+        height: 16rem;
+    }
+}
+
+@media (max-width: 320px) {
+
+    .sold-out img{
+        margin-top: 4%;
+        height: 90px;
+        width: 140px;
     }
 
-    #nav-general{
-        display: none;
+    .form-check{
+        width: 4rem;
+        font-size: 0.6rem;
     }
-    
-    #nav-mobile{
-        display:  block; 
+ 
+    /** INDEX **/
+
+    .cards-events{
+        width: 9rem;
+        height: 16rem;
     }
     
     #footer-card p{
+        font-size: 0.8rem;
+    }
+
+    #icon-redes img{
+        width: 20px;
+        height: 20px;
+    }
+
+    footer div p{
         font-size: 0.8rem;
     }
   }

@@ -35,8 +35,16 @@ function loadDataInView(event){
     //EL CAMPO assistance SINO QUE TIENE estimate.
     if(str == undefined){
         document.getElementById('event-assistance').innerHTML='Estimate: ' + event['estimate']; 
+        if(event['estimate'] == event['capacity']){
+          document.getElementById('sold-out').style.display = 'block';
+          document.getElementById('btn-buy-ticket').disabled = true;
+        }
     }else{
         document.getElementById('event-assistance').innerHTML='Assistance: ' + str; 
+        if(event['assistance'] == event['capacity']){
+          document.getElementById('sold-out').style.display = 'block';
+          document.getElementById('btn-buy-ticket').disabled = true;
+        }
     }
 
     str=event['date']; 
@@ -44,18 +52,24 @@ function loadDataInView(event){
 
     str=event['price']; 
     document.getElementById('event-price').innerHTML='Price: ' + str; 
+
 }
 
 //createCardsRelatedEvents: MUESTRA LOS EVENTOS RELACIONADOS. 
 function createCardsRelatedEvents(events){
     element = document.getElementById("related-events");
     let div = document.createElement("div");
-    div.className = "col-lg-12 row mx-lg-3 mx-md-3";
-    let template = '<p>Upcoming related events</p>';
+    if (screen.width <= 320){
+      div.className = "col-lg-12 mx-lg-3 mx-md-3";
+    }else if (screen.width >= 760){
+      div.className = "col-lg-12 row mx-lg-3 mx-md-3";
+    }
+    element.innerHTML = '<p class="px-2">Upcoming related events</p>';
+    let template = '';
     let description;
     for( const d of events){
       if(d['description'].length>=70){
-        description = d['description'].slice(0,80) + '...';
+        description = d['description'].slice(0,60) + '...';
       }else{
         description = d['description']
       }
@@ -101,8 +115,8 @@ function loadRelatedEvents(events, category, id){
   //SI EL ARRAY CREADO TIENE MAS DE 3 EVENTOS, LO CORTO Y SOLO ME QUEDO CON LOS 3 PRIMEROS.
   //EN EL CASO DE NO HABER EVENTOS FUTUROS CON ESA CATEGORIA, NO SE CREA LA SECCION DE
   //EVENTOS RELACIONADOS.
-  if(array_events.length > 3){
-    createCardsRelatedEvents(array_events.slice(0,3));
+  if(array_events.length > 4){
+    createCardsRelatedEvents(array_events.slice(0,4));
   }else if(array_events.length != 0){
     createCardsRelatedEvents(array_events);
   }
@@ -111,16 +125,19 @@ function loadRelatedEvents(events, category, id){
 
 let data = {}
 let upcoming_events = {}
+let eventx = {};
 async function getData(){
   data = await connectedApi()
   //eventx CONTIENE EL EVENTO QUE CORRESPONDE AL ID OBTENIDO DE LA URL. 
-  let event = getEventById(data.events);
-  loadDataInView(event); 
+  eventx = getEventById(data.events);
+  loadDataInView(eventx); 
   upcoming_events = getUpcomingEvents(data);
-  loadRelatedEvents(upcoming_events, event['category'], event['_id']);
+  loadRelatedEvents(upcoming_events, eventx['category'], eventx['_id']);
 }
 getData();
 
-
+window.onresize = function() {
+  loadRelatedEvents(upcoming_events, eventx['category'], eventx['_id']);
+}
 
 

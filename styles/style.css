@@ -134,7 +134,7 @@ footer p{
 
 .cards-events-detail{
     height: 300px;
-    width: 22rem;
+    width: 16rem;
 }
 
 .card-info-detail{
@@ -151,7 +151,36 @@ footer p{
     height: 100%;
 }
 
+.sold-out{
+    display: none;
+}
+
+.sold-out img{
+    position: absolute;
+    margin-top: 8%;
+    height: 100px;
+    width: 290px;
+    z-index: 4;
+}
+
+
+#sold-out{
+    display: none;
+}
+
+#sold-out img{
+    position: absolute;
+    height: 60px;
+    width: 100px;
+    z-index: 4;
+}
+
 @media (max-width: 768px) {
+
+    .sold-out img{
+        height: 100px;
+        width: 220px;
+    }
 
     .form-check{
         width: 5rem;
@@ -177,33 +206,49 @@ footer p{
 
     .cards-events-detail{
         
-        height: 330px;
-        width: 14rem;
+        height: 300px;
+        width: 10rem;
     }
 
     .card-info-detail{
-        height: 8rem;
-    }
-    
-  }
-
-@media (max-width: 430px) {
-
-    main{
-        padding-bottom: 40%;
+        height: 6rem;
     }
 
-    .form-check{
-        width: 4rem;
+    .card-title{
+        font-size: 0.8rem;
+    }
+
+    .see-more{
         font-size: 0.6rem;
     }
-
     
+}
+
+@media (max-width: 425px) {
+
+    .sold-out img{
+        margin: 3%;
+        height: 90px;
+        width: 180px;
+    }
+
+    main{
+        padding-bottom: 10%;
+    }
+
+    #nav-general{
+        display: none;
+    }
+    
+    #nav-mobile{
+        display:  block; 
+    }
+
     /** INDEX **/
 
     .cards-events{
-        width: 9rem;
-        height: 16rem;
+        width: 11.8rem;
+        height: 18rem;
     }
 
     .card-title{
@@ -253,13 +298,33 @@ footer p{
     #event-description{
         height: 3rem;
     }
+}
 
-    #nav-general{
-        display: none;
+@media (max-width: 393px) {
+    .cards-events{
+        width: 11.2rem;
+        height: 16rem;
     }
-    
-    #nav-mobile{
-        display:  block; 
+}
+
+@media (max-width: 320px) {
+
+    .sold-out img{
+        margin-top: 4%;
+        height: 90px;
+        width: 140px;
+    }
+
+    .form-check{
+        width: 4rem;
+        font-size: 0.6rem;
+    }
+ 
+    /** INDEX **/
+
+    .cards-events{
+        width: 9rem;
+        height: 16rem;
     }
     
     #footer-card p{

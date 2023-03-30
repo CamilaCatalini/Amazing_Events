@@ -35,8 +35,16 @@ function loadDataInView(event){
     //EL CAMPO assistance SINO QUE TIENE estimate.
     if(str == undefined){
         document.getElementById('event-assistance').innerHTML='Estimate: ' + event['estimate']; 
+        if(event['estimate'] == event['capacity']){
+          document.getElementById('sold-out').style.display = 'block';
+          document.getElementById('btn-buy-ticket').disabled = true;
+        }
     }else{
         document.getElementById('event-assistance').innerHTML='Assistance: ' + str; 
+        if(event['assistance'] == event['capacity']){
+          document.getElementById('sold-out').style.display = 'block';
+          document.getElementById('btn-buy-ticket').disabled = true;
+        }
     }
 
     str=event['date']; 
@@ -44,6 +52,7 @@ function loadDataInView(event){
 
     str=event['price']; 
     document.getElementById('event-price').innerHTML='Price: ' + str; 
+
 }
 
 //createCardsRelatedEvents: MUESTRA LOS EVENTOS RELACIONADOS. 
@@ -60,7 +69,7 @@ function createCardsRelatedEvents(events){
     let description;
     for( const d of events){
       if(d['description'].length>=70){
-        description = d['description'].slice(0,80) + '...';
+        description = d['description'].slice(0,60) + '...';
       }else{
         description = d['description']
       }
@@ -106,8 +115,8 @@ function loadRelatedEvents(events, category, id){
   //SI EL ARRAY CREADO TIENE MAS DE 3 EVENTOS, LO CORTO Y SOLO ME QUEDO CON LOS 3 PRIMEROS.
   //EN EL CASO DE NO HABER EVENTOS FUTUROS CON ESA CATEGORIA, NO SE CREA LA SECCION DE
   //EVENTOS RELACIONADOS.
-  if(array_events.length > 3){
-    createCardsRelatedEvents(array_events.slice(0,3));
+  if(array_events.length > 4){
+    createCardsRelatedEvents(array_events.slice(0,4));
   }else if(array_events.length != 0){
     createCardsRelatedEvents(array_events);
   }
